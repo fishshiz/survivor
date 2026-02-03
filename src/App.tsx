@@ -1,32 +1,66 @@
-import { useState } from 'react'
-import jeffLogo from './assets/jeff.png'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import jeffLogo from "./assets/jeff.png";
+import { runSimulations, runSimulation, type Average } from "./simulation";
+import { type Player } from "./player";
+import { NumberInput, Flex, Button } from "@chakra-ui/react";
+
+import "./App.css";
+import { PlayerTable } from "./components/ui/table";
+import { AverageTable } from "./components/ui/average-table";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [players, setPlayers] = useState<Player[]>([]);
+  const [average, setAverage] = useState<Average[]>([]);
+  const [averageLoading, setAverageLoading] = useState(false);
+  const [simulations, setSimulations] = useState<number>(10);
+  const handleSimulationsClick = async () => {
+    setAverageLoading(true);
+    await runSimulations(simulations).then((res) => setAverage(res));
+    setAverageLoading(false);
+  };
 
   return (
     <>
-      <div>
-        <a href="https://react.dev" target="_blank">
-          <img src={jeffLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
+      <a href="https://react.dev" target="_blank">
+        <img src={jeffLogo} className="logo react" alt="React logo" />
+      </a>
       <h1>Survivor simulator</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <p>Run a single simulation</p>
+        <button onClick={() => setPlayers(() => runSimulation())}>Run</button>
+        {players.length ? (
+          <>
+            <PlayerTable players={players} />
+          </>
+        ) : null}
+        <p>Or</p>
+        <p>Run multiple simulations to see an overall average</p>
+        <Flex>
+          <NumberInput.Root
+            size="md"
+            marginEnd="auto"
+            defaultValue={simulations.toString()}
+            onValueChange={(val) => setSimulations(parseInt(val.value))}
+          >
+            <NumberInput.Input />
+          </NumberInput.Root>
+          <Button
+            variant="solid"
+            backgroundColor="#fad003"
+            loading={averageLoading}
+            onClick={handleSimulationsClick}
+          >
+            Run
+          </Button>
+        </Flex>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {average.length ? (
+        <>
+          <AverageTable players={average} />
+        </>
+      ) : null}
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -104,7 +104,7 @@ const scoringRules: ScoringRules = {
     {
       id: 1,
       name: "Win sole survivor (50 pts)",
-      points: 40,
+      points: 50,
       likelihood: 1,
       repeatable: false,
       appliesTo: "individual",

@@ -25,7 +25,7 @@ const scoringRules: ScoringRules = {
   first: [
     {
       id: 24,
-      name: "First out (2 pts)",
+      name: "First out",
       points: 2,
       likelihood: 1,
       repeatable: false,
@@ -36,7 +36,7 @@ const scoringRules: ScoringRules = {
   preMerge: [
     {
       id: 13,
-      name: "Team Immunity (5 pts)",
+      name: "Team Immunity",
       points: 5,
       likelihood: 1,
       repeatable: false,
@@ -45,7 +45,7 @@ const scoringRules: ScoringRules = {
     },
     {
       id: 18,
-      name: "Team Reward (2 pts)", // I'm assuming this is just for the 1st place team winning the best reward
+      name: "Team Reward", // I'm assuming this is just for the 1st place team winning the best reward
       points: 2,
       likelihood: 1,
       repeatable: false,
@@ -55,7 +55,7 @@ const scoringRules: ScoringRules = {
   merge: [
     {
       id: 12,
-      name: "Make the jury (7 pts)",
+      name: "Make the jury",
       points: 7,
       likelihood: 1,
       repeatable: false,
@@ -65,7 +65,7 @@ const scoringRules: ScoringRules = {
   postMerge: [
     {
       id: 7,
-      name: "Individual immunity win (7 pts)",
+      name: "Individual immunity win",
       points: 7,
       likelihood: 1,
       repeatable: false,
@@ -74,7 +74,7 @@ const scoringRules: ScoringRules = {
     },
     {
       id: 8,
-      name: "Steal an immunity idol (10 pts)",
+      name: "Steal an immunity idol",
       points: 10,
       likelihood: 0.15,
       appliesTo: "individual",
@@ -82,7 +82,7 @@ const scoringRules: ScoringRules = {
     },
     {
       id: 17,
-      name: "Individual reward win (3 pts)",
+      name: "Individual reward win",
       points: 3,
       likelihood: 1,
       appliesTo: "individual",
@@ -92,7 +92,7 @@ const scoringRules: ScoringRules = {
   fire: [
     {
       id: 5,
-      name: "Win Fire (10 pts)",
+      name: "Win Fire",
       points: 10,
       likelihood: 1,
       repeatable: false,
@@ -103,7 +103,7 @@ const scoringRules: ScoringRules = {
   final: [
     {
       id: 1,
-      name: "Win sole survivor (50 pts)",
+      name: "Win sole survivor",
       points: 50,
       likelihood: 1,
       repeatable: false,
@@ -114,7 +114,7 @@ const scoringRules: ScoringRules = {
   second: [
     {
       id: 2,
-      name: "Runner up (25 pts)",
+      name: "Runner up",
       points: 25,
       likelihood: 1,
       repeatable: false,
@@ -125,7 +125,7 @@ const scoringRules: ScoringRules = {
   third: [
     {
       id: 3,
-      name: "Third place (10 pts)",
+      name: "Third place",
       points: 10,
       likelihood: 1,
       appliesTo: "individual",
@@ -136,7 +136,7 @@ const scoringRules: ScoringRules = {
   all: [
     {
       id: 4,
-      name: "Save someone by playing an idol (Must receive majority of null votes, includes player playing it on themselves) (20 pts)",
+      name: "Save someone by playing an idol (Must receive majority of null votes, includes player playing it on themselves)",
       points: 20,
       likelihood: 0.15,
       appliesTo: "individual",
@@ -144,7 +144,7 @@ const scoringRules: ScoringRules = {
     },
     {
       id: 6,
-      name: "Successful shot in the dark (10 pts)",
+      name: "Successful shot in the dark",
       points: 10,
       likelihood: 0.1,
       appliesTo: "individual",
@@ -153,7 +153,7 @@ const scoringRules: ScoringRules = {
     },
     {
       id: 9,
-      name: "Acquire an active idol (10 pts)",
+      name: "Acquire an active idol",
       points: 10,
       likelihood: 0.25,
       appliesTo: "individual",
@@ -161,7 +161,7 @@ const scoringRules: ScoringRules = {
     },
     {
       id: 10,
-      name: "Steal a vote (7 pts)",
+      name: "Steal a vote",
       points: 7,
       likelihood: 0.25,
       appliesTo: "individual",
@@ -169,7 +169,7 @@ const scoringRules: ScoringRules = {
     },
     {
       id: 11,
-      name: "Blindside someone with an active idol (Part of faction voting for departing castaway) (10 pts)",
+      name: "Blindside someone with an active idol (Part of faction voting for departing castaway)",
       points: 10,
       likelihood: 0.1,
       appliesTo: "team",
@@ -178,7 +178,7 @@ const scoringRules: ScoringRules = {
     },
     {
       id: 14,
-      name: "Acquire advantage (5 pts)",
+      name: "Acquire advantage",
       points: 5,
       likelihood: 0.25,
       repeatable: false,
@@ -186,7 +186,7 @@ const scoringRules: ScoringRules = {
     },
     {
       id: 15,
-      name: "Use advantage successfully (5 pts)",
+      name: "Use advantage successfully",
       points: 5,
       likelihood: 0.25,
       repeatable: false,
@@ -194,7 +194,7 @@ const scoringRules: ScoringRules = {
     },
     {
       id: 16,
-      name: "Group vote on MVP of episode (Cast after every episode, can't vote for your own person) (5 pts)",
+      name: "Group vote on MVP of episode (Cast after every episode, can't vote for your own person)",
       points: 5,
       likelihood: 1,
       repeatable: false,
@@ -202,7 +202,7 @@ const scoringRules: ScoringRules = {
     },
     {
       id: 19,
-      name: "Play a fake idol (2 pts)",
+      name: "Play a fake idol",
       points: 2,
       likelihood: 0.05,
       appliesTo: "individual",
@@ -210,7 +210,7 @@ const scoringRules: ScoringRules = {
     },
     {
       id: 20,
-      name: 'Your player gets a "That\'s how you do it on survivor" (2 pts)',
+      name: 'Your player gets a "That\'s how you do it on survivor"',
       points: 2,
       likelihood: 0.15,
       appliesTo: "individual",
@@ -218,7 +218,7 @@ const scoringRules: ScoringRules = {
     },
     {
       id: 21,
-      name: "Cry (2 pts)",
+      name: "Cry",
       points: 2,
       likelihood: 0.1,
       appliesTo: "individual",
@@ -226,7 +226,7 @@ const scoringRules: ScoringRules = {
     },
     {
       id: 22,
-      name: "Catch a Fish (2 pts)",
+      name: "Catch a Fish",
       points: 2,
       likelihood: 0.15,
       appliesTo: "individual",
@@ -234,7 +234,7 @@ const scoringRules: ScoringRules = {
     },
     {
       id: 23,
-      name: "Screen time Lead (for each episode) (3 pts)",
+      name: "Screen time Lead (for each episode)",
       points: 3,
       likelihood: 0.25,
       appliesTo: "individual",

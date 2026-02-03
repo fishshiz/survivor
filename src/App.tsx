@@ -3,6 +3,7 @@ import jeffLogo from "./assets/jeff.png";
 import { runSimulations, runSimulation, type Average } from "./simulation";
 import { type Player } from "./player";
 import { NumberInput, Flex, Button } from "@chakra-ui/react";
+import { RulesDrawer } from "./components/ui/rules-drawer";
 
 import "./App.css";
 import { PlayerTable } from "./components/ui/table";
@@ -25,6 +26,7 @@ function App() {
         <img src={jeffLogo} className="logo react" alt="React logo" />
       </a>
       <h1>Survivor simulator</h1>
+      <RulesDrawer />
       <div className="card">
         <p>Run a single simulation</p>
         <button onClick={() => setPlayers(() => runSimulation())}>Run</button>

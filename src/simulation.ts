@@ -1,4 +1,5 @@
-import { scoringRules, type Rule } from "./rules";
+import { type Rule } from "./rules";
+import { rules } from "@/components/ui/rules-drawer";
 import { players as masterPlayers, type Player } from "./player";
 
 type Average = {
@@ -72,29 +73,29 @@ const runSimulation: () => Player[] = () => {
   let playerCount = initialPlayerCount;
   while (playerCount > 0) {
     const activePlayers = [...getActivePlayers(players)];
-    let applicableRules = [...scoringRules.all];
+    let applicableRules = [...rules.all];
     if (activePlayers.length === initialPlayerCount) {
-      applicableRules.push(...scoringRules.first);
+      applicableRules.push(...rules.first);
     } else if (activePlayers.length === 4) {
-      applicableRules.push(...scoringRules.fire);
+      applicableRules.push(...rules.fire);
     } else if (activePlayers.length < 4) {
       switch (activePlayers.length) {
         case 1:
-          applicableRules.push(...scoringRules.final);
+          applicableRules.push(...rules.final);
           break;
         case 2:
-          applicableRules.push(...scoringRules.second);
+          applicableRules.push(...rules.second);
           break;
         case 3:
-          applicableRules.push(...scoringRules.third);
+          applicableRules.push(...rules.third);
           break;
       }
     } else if (activePlayers.length === initialPlayerCount / 2) {
-      applicableRules.push(...scoringRules.merge);
+      applicableRules.push(...rules.merge);
     } else if (activePlayers.length < initialPlayerCount / 2) {
-      applicableRules.push(...scoringRules.postMerge);
+      applicableRules.push(...rules.postMerge);
     } else {
-      applicableRules.push(...scoringRules.preMerge);
+      applicableRules.push(...rules.preMerge);
     }
     for (const rule of applicableRules) {
       applyRule(activePlayers, rule);

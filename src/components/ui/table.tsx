@@ -6,7 +6,7 @@ import {
   getExpandedRowModel,
 } from "@tanstack/react-table";
 import { type Player } from "@/player";
-import { useReducer, Fragment } from "react";
+import { Fragment } from "react";
 import { List, Table } from "@chakra-ui/react";
 import {
   Bs0Circle,
@@ -60,7 +60,6 @@ const columns = [
   },
 ];
 const PlayerTable = ({ players }: { players: Player[] }) => {
-  const rerender = useReducer(() => ({}), {})[1];
   const table = useReactTable({
     columns,
     data: players,
@@ -125,10 +124,6 @@ const PlayerTable = ({ players }: { players: Player[] }) => {
           ))}
         </Table.Footer>
       </Table.Root>
-      <div className="h-4" />
-      <button onClick={() => rerender()} className="border p-2">
-        Rerender
-      </button>
     </div>
   );
 };

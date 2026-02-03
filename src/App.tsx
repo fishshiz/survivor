@@ -22,9 +22,7 @@ function App() {
 
   return (
     <>
-      <a href="https://react.dev" target="_blank">
-        <img src={jeffLogo} className="logo react" alt="React logo" />
-      </a>
+      <img src={jeffLogo} className="logo react" alt="React logo" />
       <h1>Survivor simulator</h1>
       <RulesDrawer />
       <div className="card">

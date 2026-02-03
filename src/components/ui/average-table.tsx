@@ -3,11 +3,10 @@ import {
   useReactTable,
   getCoreRowModel,
   flexRender,
-  getExpandedRowModel,
 } from "@tanstack/react-table";
 import { type Average } from "@/simulation";
-import { useReducer, Fragment } from "react";
-import { List, Table } from "@chakra-ui/react";
+import { Fragment } from "react";
+import { Table } from "@chakra-ui/react";
 
 const columnHelper = createColumnHelper<Average>();
 const columns = [
@@ -53,7 +52,6 @@ const columns = [
   }),
 ];
 const AverageTable = ({ players }: { players: Average[] }) => {
-  const rerender = useReducer(() => ({}), {})[1];
   const table = useReactTable({
     columns,
     data: players,

@@ -65,7 +65,7 @@ const PlayerTable = ({ players }: { players: Player[] }) => {
     columns,
     data: players,
     getCoreRowModel: getCoreRowModel(),
-    getRowCanExpand: (row) => true,
+    getRowCanExpand: (_row) => true,
     getExpandedRowModel: getExpandedRowModel(),
   });
   return (

@@ -50,6 +50,11 @@ const columns = [
     footer: (info) => info.column.id,
     header: () => <span>% 5th Place Rank</span>,
   }),
+  columnHelper.accessor("poolWinner", {
+    cell: (info) => info.getValue(),
+    footer: (info) => info.column.id,
+    header: () => <span>% They are in a winning trio</span>,
+  }),
 ];
 const AverageTable = ({ players }: { players: Average[] }) => {
   const table = useReactTable({

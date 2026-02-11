@@ -11,10 +11,51 @@ type Average = {
   thirdPlace: number;
   fourthPlace: number;
   fithPlace: number;
+  poolWinner: number;
 };
 
 const getActivePlayers = (players: Player[]) =>
   players.filter((player) => !player.eliminated);
+
+const draftPlayers = (players: Player[]): number[] => {
+  const playersCopy = players.map((player) => ({
+    ...player,
+  }));
+  let currentIndex = playersCopy.length;
+
+  while (currentIndex !== 0) {
+    const randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    [playersCopy[currentIndex], playersCopy[randomIndex]] = [
+      playersCopy[randomIndex],
+      playersCopy[currentIndex],
+    ];
+  }
+  const output: { points: number; players: number[] } = {
+    points: 0,
+    players: [],
+  };
+  const trios: Player[][] = [];
+  playersCopy.forEach((player, idx) => {
+    if (idx % 3 === 0) {
+      trios.push([player, playersCopy[idx + 1], playersCopy[idx + 2]]);
+    }
+  });
+
+  trios.forEach((trio: Player[]) => {
+    const total = trio.reduce((c, p) => {
+      c += p.points;
+      return c;
+    }, 0);
+    if (total > output.points) {
+      output.points = total;
+      output.players = trio.map((p) => p.id);
+    }
+  });
+
+  return output.players;
+};
 
 const runSimulations: (times: number) => Promise<Average[]> = (times = 1) => {
   return new Promise((resolve, _reject) => {
@@ -22,6 +63,7 @@ const runSimulations: (times: number) => Promise<Average[]> = (times = 1) => {
     for (let time = 0; time < times; time++) {
       // These are sorted by point rank already
       const playerSimulation = [...runSimulation()];
+      const winningPlayerIds = draftPlayers(playerSimulation);
       playerSimulation.forEach((player: Player, idx) => {
         if (!averages[idx + 1]) {
           averages[idx + 1] = {
@@ -33,6 +75,7 @@ const runSimulations: (times: number) => Promise<Average[]> = (times = 1) => {
             thirdPlace: player.finalRank === 3 ? 1 : 0,
             fourthPlace: player.finalRank === 4 ? 1 : 0,
             fithPlace: player.finalRank === 5 ? 1 : 0,
+            poolWinner: winningPlayerIds.includes(player.id) ? 1 : 0,
           };
         } else {
           averages[idx + 1].points += player.points;
@@ -42,6 +85,9 @@ const runSimulations: (times: number) => Promise<Average[]> = (times = 1) => {
           averages[idx + 1].thirdPlace += player.finalRank === 3 ? 1 : 0;
           averages[idx + 1].fourthPlace += player.finalRank === 4 ? 1 : 0;
           averages[idx + 1].fithPlace += player.finalRank === 5 ? 1 : 0;
+          averages[idx + 1].poolWinner += winningPlayerIds.includes(player.id)
+            ? 1
+            : 0;
         }
       });
     }
@@ -54,6 +100,7 @@ const runSimulations: (times: number) => Promise<Average[]> = (times = 1) => {
       thirdPlace: val.thirdPlace / times,
       fourthPlace: val.fourthPlace / times,
       fithPlace: val.fithPlace / times,
+      poolWinner: val.poolWinner / times,
     }));
 
     return resolve(output);
